@@ -34,7 +34,7 @@ This architecture illustrates the deployment process for containerizing an appli
 
 ## Getting Started with the lab
  
-Welcome to your Cloud Native Application lab, We've prepared a seamless environment for you to explore and learn about Azure services. Let's begin by making the most of this experience:
+Welcome to your Cloud Native Application lab. We've prepared a seamless environment for you to explore and learn about Azure services. Let's begin by making the most of this experience:
  
 ## **Accessing Your Lab Environment**
  
@@ -42,7 +42,7 @@ Once you're ready to dive in, your virtual machine and **Lab Guide** will be rig
 
    ![](./media/SSG.png)
 
-Once you get access to Virtual Machine, in the dialog for shutdown event tracker, click on **cancel**.
+Once you get access to the Virtual Machine, in the dialog for shutdown event tracker, click on **cancel**.
 
    ![](./media/cn-img-up.png)
 
@@ -56,21 +56,25 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 ## **Exploring Your Lab Resources**
  
-To get a better understanding of your lab resources and credentials, navigate to the **Environment Details** tab.
+To access your lab credentials, navigate to the **Environment Details** tab.
 
-   ![](./media/CL02.png)
+   ![](./media/m36-gt-lab-gs-g3.png)
  
 ## **Utilizing the Split Window Feature**
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
    ![](./media/CL3.png)
+
+If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
+
+   ![](./media/fr-gs-g1.png)
  
 ## **Managing Your Virtual Machine**
  
 Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-   ![](./media/SS3.png)
+   ![](./media/m36-gt-lab-gs-g5.png)
  
 ## **Let's Get Started with Azure Portal**
  
@@ -80,19 +84,19 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
  
 2. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
  
-   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
+   - **Email:** <inject key="AzureAdUserEmail"></inject>
  
-     ![](./media/GS2.png "Enter Email")
+     ![](./media/m36-gt-lab-gs-g8.png)
  
-3. Next, provide your password:
+3. Next, provide your lab Temporary Access Pass:
  
-   - **Password:** <inject key="AzureAdUserPassword"></inject>
+   - **Temporary Access Pass:** <inject key="AzureAdUserPassword"></inject>
  
-     ![](./media/GS3.png "Enter Password")
+     ![](./media/m36-gt-lab-gs-g9.png "Enter Password")
  
 4. If you see the pop-up **Stay Signed in?**, click **No**.
 
-     ![](./media/GS9.png "Enter Password")
+     ![](./media/m36-gt-lab-gs-g10.png "Enter Password")
 
 5. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
 
@@ -113,7 +117,3 @@ Now, click on Next from the lower right corner to move to the next page.
    ![](./media/GS4.png "Enter Password")
 
 ### Happy Learning!!
-
-
-
-

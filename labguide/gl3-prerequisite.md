@@ -30,20 +30,20 @@ In this task, you will be connecting to the Build agent VM using the Command pro
    
 1. Once the SSH is connected to the VM, please enter the VM password given below:
    
-   * Password: **<inject key="Build Agent VM Password" enableCopy="true" />**
+    * Password: **<inject key="Build Agent VM Password" enableCopy="true" />**
 
-   ![](media/EX1-T1-S3.png "open cmd")
-   
-   >**Note**: Please note that while typing the password you won’t be able to see it due to security concerns.
+      ![](media/E1T1S3.png "open cmd")
+
+      >**Note**: Please note that while typing the password, you won’t be able to see it due to security concerns.
     
 1. Once the VM is connected, run the below command to clone the GitHub repository that we are going to use for the lab.
 
    ``` 
    git clone https://github.com/CloudLabsAI-Azure/Cloud-Native-Application
    ```
-    
-   ![](media/EX1-T1-S4.png)
-    
+   
+   ![](media/cdn-nat-lab3-e31-g2.png)
+   
    > **Note:** If you receive an output message stating - the destination path 'Cloud-Native-Application' already exists and is not an empty directory. Please run the following commands and then reperform step - 4 of the task.
 
    ```
@@ -51,15 +51,15 @@ In this task, you will be connecting to the Build agent VM using the Command pro
    rm -rf Cloud-Native-Application
    exit
    ```   
-   ![](media/EX1-T1-S4-1.png)
+   ![](media/cdn-nat-lab3-e31-g1.png)
     
 1. After the GitHub cloning is completed, run the below command to change the directory to the lab files.
     
    ```
    cd Cloud-Native-Application/labfiles/ 
    ```
-    
-   ![](media/EX1-T1-S5.png)
+   
+   ![](media/cdn-nat-lab3-e31-g3.png)
     
 ### Task 2: Build Docker images to containerize the application and push them to the container registry
 
@@ -68,35 +68,39 @@ In this task, you will be building the docker images to containerize the applica
 1. Run the below command to log in to Azure, navigate to the device login URL `https://microsoft.com/devicelogin` in the browser and copy the authentication code.
 
    ``` 
-   sudo apt install azure-cli
-   ```
-
-   >**Note:** If asked, type **Y**, and press enter.
-   ```
    az login
    ```
     
    ![](media/EX1-T2-S1.png)
+
+   > **Note:** If `az login` isn’t recognized, install Azure CLI using the commands below, let the setup complete, and then rerun `az login` to proceed
+
+   ``` 
+   sudo apt update
+   sudo apt install azure-cli -y
+   ```
     
 1. Enter the copied authentication code **(1)** and click on **Next** **(2)**.
 
-   ![](media/ex1-codelogin.png)
+   ![](media/cdn-nat-lab3-e31-g4.png)
    
 1. On the **Sign in to your account** tab you will see a login screen, in that enter the following email/username and then click on **Next**.
 
-   * Email/Username: **<inject key="AzureAdUserEmail"></inject>**
+   * Email: **<inject key="AzureAdUserEmail"></inject>**
 
-   > **Note:** If you get a **Pick an account** popup, select the above Email ID.
+        ![](media/cdn-nat-lab3-e31-g5.png)
 
-1. Now enter the following password and click on **Sign in**.
+1. Now enter the following Temporary Access Pass and click on **Sign in**.
 
-   * Password: **<inject key="AzureAdUserPassword"></inject>**
+   * Temporary Access Pass: **<inject key="AzureAdUserPassword"></inject>**
 
-   > **Note:** You will not get the popup to enter the password if you had got the **Pick an account** popup where you had chosen the account.
+        ![](media/cdn-nat-lab3-e31-g6.png)
+
+        > **Note:** You will not get the popup to enter the password if you had got the **Pick an account** popup where you had chosen the account.
 
 1. In a pop-up to confirm the sign-into Microsoft Azure CLI, click on **Continue**.
 
-   ![](media/ex1-logincontinue.png)
+   ![](media/cdn-nat-lab3-e31-g7.png)
 
 1. After signing-in, you will see a confirmation popup **You have signed in to the Microsoft Azure Cross-platform Command Line Interface application on your device**. Close the browser tab and open the previous Command Prompt session.   
 
@@ -104,7 +108,7 @@ In this task, you will be building the docker images to containerize the applica
 
 1. Once you log in to Azure, you are going to build the Docker images in the next steps and will be pushing them to ACR.
 
-   ![](media/EX1-T2-S6.png)
+   ![](media/cdn-nat-lab3-e31-g8.png)
 
 1. Please make sure that you are in the **labfiles** directory before running the next steps as the docker build needs to find the DockerFile to create the image.
 
@@ -118,7 +122,7 @@ In this task, you will be building the docker images to containerize the applica
    docker build src -f ./src/ContosoTraders.Api.Carts/Dockerfile -t contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io/contosotradersapicarts:latest -t contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io/contosotradersapicarts:latest
    ```
     
-   ![](media/EX1-T2-S8.png)
+   ![](media/cdn-nat-lab3-e31-g9.png)
     
 1. Repeat the steps to create the **contosotraders-Products** docker image with the below command.
 
@@ -126,7 +130,7 @@ In this task, you will be building the docker images to containerize the applica
    docker build src -f ./src/ContosoTraders.Api.Products/Dockerfile -t contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io/contosotradersapiproducts:latest -t contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io/contosotradersapiproducts:latest
    ```
 
-   ![](media/EX1-T2-S9.png)
+   ![](media/cdn-nat-lab3-e31-g10.png)
 
 1. Run the below command to change the directory to `services` and open the `configService.js` file.
 
@@ -136,7 +140,7 @@ In this task, you will be building the docker images to containerize the applica
    vi configService.js
    ```
     
-   ![](media/EX1-T2-S10.png)
+   ![](media/cdn-nat-lab3-e31-g11.png)
     
 1. In the `vi` editor, press **_i_** to get into the `insert` mode. In the APIUrl and APIUrlShoppingCart, replace **deploymentid** with **<inject key="DeploymentID" enableCopy="true"/>** value and **REGION** with **<inject key="Region" enableCopy="true"/>** value. Then press **_ESC_**, write **_:wq_** to save your changes, and close the file. We need to update the API URL here so that the Contoso Traders application can connect to product API once it's pushed to AKS containers.
     
@@ -148,7 +152,9 @@ In this task, you will be building the docker images to containerize the applica
    const APIUrlShoppingCart = 'https://contoso-traders-cartsdeploymentid.orangeflower-95b09b9d.REGION.azurecontainerapps.io/v1';
    ```
 
-   ![](media/cdnfix1.png)
+   ![](media/cdn-nat-lab3-e31-g12.png)
+
+   ![](media/cdn-nat-lab3-e31-g14.png)
 
 1. Run the below command to change the directory to the `ContosoTraders.Ui.Website` folder.
 
@@ -163,7 +169,7 @@ In this task, you will be building the docker images to containerize the applica
    docker build . -t contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io/contosotradersuiweb:latest -t contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io/contosotradersuiweb:latest
    ```    
     
-   ![](media/EX1-T2-S13.png)
+   ![](media/cdn-nat-lab3-e31-g13.png)
     
     
    >**Note**: Please be aware that the above command may take up to 5 minutes to finish the build. Before taking any further action, make sure it runs successfully. Also, you many notice few warnings related to npm version update which is expected and doesn't affect the lab's functionality.
@@ -181,15 +187,23 @@ In this task, you will be building the docker images to containerize the applica
    docker image ls
    ```
 
-   ![](media/EX1-T2-S15.png)
+   ![](media/cdn-nat-lab3-e31-g16.png)
 
-1. Navigate to Azure portal, open **contosotradersacr<inject key="DeploymentID" enableCopy="false" />** Container registry from **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />** resource group.
+1. In the **Navigate** section, select **Resource groups**.
 
-   ![](media/ex1-acr1-1.png)
+   ![](media/cdn-nat-lab3-e31-g17.png)
+
+1. In the **Resource groups** list, select **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />**.
+
+   ![](media/cdn-nat-lab3-e31-g18.png)
+
+1. In the **Resources** list, search for **contosotradersacr<inject key="DeploymentID" enableCopy="false" /> (1)** and select it (2).
+
+   ![](media/cdn-nat-lab3-e31-g19.png)
    
-1. From **contosotradersacr<inject key="DeploymentID" enableCopy="false" />** Container registry, select **Access keys** **(1)** under Settings from left side menu. **Copy** **(2)** the Password and paste it into a text file for later use.
+1. In **contosotradersacr<inject key="DeploymentID" enableCopy="false" />**, expand **Settings (1)**, select **Access keys (2)**, and copy the **Password (3)**.
 
-   ![](media/new-01.png)    
+   ![](media/cdn-nat-lab3-e31-g20.png)  
 
 1. Now switch back to **Command Prompt** and login to ACR using the below command, please update the ACR password value in the below command. You should be able to see that output below in the screenshot. Make sure to replace the password with the copied container registry password which you have copied in the previous step in the below command.
 
@@ -197,7 +211,7 @@ In this task, you will be building the docker images to containerize the applica
    docker login contosotradersacr<inject key="DeploymentID" enableCopy="false"/>.azurecr.io -u contosotradersacr<inject key="DeploymentID" enableCopy="false"/> -p [password]
    ```
 
-   ![](media/EX1-T2-S18.png "open cmd")
+   ![](media/cdn-nat-lab3-e31-g21.png "open cmd")
 
 1. Once you log in to the ACR, please run the below commands to push the Docker images to the Azure container registry.
 
@@ -215,8 +229,7 @@ In this task, you will be building the docker images to containerize the applica
    
 1. You should be able to see the docker image getting pushed to ACR as shown in the below screenshot. 
     
-   ![](media/cloudnative2.png "open cmd")
-    
+   ![](media/cdn-nat-lab3-e31-g23.png)
 
 ## Summary
 
@@ -240,26 +253,38 @@ In this exercise, you will complete the following tasks:
 
 In this task, you will be connecting to a Mongo database hosted over an Azure Linux VM and exploring the databases and collections in it.
 
-1. While connected to your Linux VM, run the below command for connecting to Mongo shell to display the databases and collections in it using the Mongo shell.
+1. While connected to your Linux VM, run the following command to verify whether MongoDB is installed:
 
    ```
-   mongo
+   mongo --version
    ```
-   
-   >**Note**: If you face an issue while connecting to the source DB with an error connection is refused. Run the **<inject key="Command to Connect to Build Agent VM" enableCopy="true" />** command and enter the VM password **<inject key="Build Agent VM Password" enableCopy="true" />** to connect to the Linux VM using ssh. Please run the following commands and reperform step - 1 of the task.
+
+   ![](media/E2T1S1.png)   
+
+   >**Note:** If MongoDB is installed, proceed to the next step. If it is not installed, follow the troubleshooting steps provided below.
+
+   >Run the **<inject key="Command to Connect to Build Agent VM" enableCopy="true" />** command, Type **yes** when it says **Are you sure you want to continue connecting (yes/no/[fingerprint])?** and enter the VM password **<inject key="Build Agent VM Password" enableCopy="true" />** to connect to the Linux VM using ssh. Please run the following commands.
 
    ```
    sudo apt install mongodb-server
    cd /etc
    sudo sed -i 's/bind_ip = 127.0.0.1/bind_ip = 0.0.0.0/g' /etc/mongodb.conf
    sudo sed -i 's/#port = 27017/port = 27017/g' /etc/mongodb.conf
+   cd ~/Cloud-Native-Application/labfiles/src/developer/content-init
+   npm ci
+   nodejs server.js   
    sudo service mongodb stop
    sudo service mongodb start
+   ```   
+
+1. While connected to your Linux VM, run the following command to connect to the mongo shell to display the databases and collections in it using the mongo shell.
+
    ```
-   
-   ![](media/EX2-T1-S1.png)
-   
-1. Run the following commands to verify the database in the Mongo shell. You should be able to see the **contentdb** available and **item & products** collections inside **contentdb**.
+   mongo
+   ```
+   ![](media/E2T1S2.png)
+
+1. Run the following commands to verify the database in the mongo shell. You should be able to see the **contentdb** **(1**) available and **item & products** **(2)** collections inside **contentdb**.
 
    ```
    show dbs
@@ -267,7 +292,7 @@ In this task, you will be connecting to a Mongo database hosted over an Azure Li
    show collections
    ```
    
-   ![](media/mongo.png) 
+   ![](media/E2T1S3.png) 
 
    >**Note**: In case you don't see the data inside the Mongo. Please follow the steps mentioned below.
 
@@ -275,118 +300,142 @@ In this task, you will be connecting to a Mongo database hosted over an Azure Li
 
    - Please run the below-mentioned commands in the command prompt and perform steps 1 and 2 again.
 
-   ```
-   cd ~/Cloud-Native-Application/labfiles/src/developer/content-init
-   sudo npm ci
-   nodejs server.js
-   ```     
+      ```
+      cd ~/Cloud-Native-Application/labfiles/src/developer/content-init
+      sudo npm ci
+      nodejs server.js
+      ```        
 
 ### Task 2: Create a Migration Project and migrate data to Azure CosmosDB
 
 In this task, you will create a Migration project within Azure Database Migration Service, and then migrate the data from MongoDB to Azure Cosmos DB. In the later exercises, you will be using the Azure CosmosDB to fetch the data for the products page. 
 
-1. In the Azure Portal, navigate to your **contosotraders** virtual machine in the **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />** resource group. Copy the **Private IP address** and paste it on the notepad for later use.
+1. In the Azure portal search bar, enter **Virtual machines (1)** and select **Virtual machines (2)** from the Services list.
 
-   ![](media/privateip.png)
+   ![](media/cdn-nat-lab4-e41-g3.png)
 
-1. Navigate to **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />** resource group and open **contosotraders-<inject key="DeploymentID" enableCopy="false" />** CosmosDB resource and click on **Data Explorer(1)**. Now click on drop down arrow, adjacent to **+ New Collection (2)** and then select **+ New Database (3)**.
+1. From the **Virtual machines** list, select the **contosotraders** virtual machine.
 
-   ![](media/new-02.png)
+   ![](media/cdn-nat-lab4-e41-g4.png)
 
-   > **Note:** If you get **Welcome! What is Cosmos DB?** popup, close it by click on **X**.
+1. In the **Overview** pane, copy the **Private IP address**, and paste it into a notepad for later use.
 
-1. Provide name as `contentdb` **(1)** for **Database id**, select the checkbox of **Provision throughput (2)** and select **Databse throughput** as **Manual** **(3)**,  provide the RU/s value to `400` **(4)** and click on **OK (5)**.
+   ![](media/cdn-nat-lab4-e41-g5.png)
 
-   ![](media/new-03.png)
+1. In the Azure portal search bar, enter **Azure Cosmos DB (1)** and select **Azure Cosmos DB (2)** from the Services list.
 
-1. Navigate to the Azure Database Migration Service **contosotraders<inject key="DeploymentID" enableCopy="false" />** resource blade from the **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />** resource group.
+   ![](media/cdn-nat-lab4-e41-g6.png)
+
+1. In the **Azure Cosmos DB** page, use the filter **(1)** if required, and then select the **contosotraders-<inject key="DeploymentID" enableCopy="false" /> (2)** Cosmos DB resource.
+
+   ![](media/cdn-nat-lab4-e41-g7.png)
+
+1. From the left navigation pane, select **Data Explorer**.
+
+   ![](media/cdn-nat-lab4-e41-g8.png)
+
+   > **Note:** If you get **Welcome! What is Cosmos DB?** popup, close it by clicking on **X**.
+
+1. In the **Data Explorer** pane, click the drop-down arrow **(1)** next to **New Collection**, and then select **New Database (2)**.
+
+   ![](media/cdn-nat-lab4-e41-g9.png)
+
+1. Provide name as `contentdb` **(1)** for **Database id**. Select **Provision throughput (2)** and then select **Databse throughput** as **Manual** **(3)**,  provide the RU/s value to `400` **(4)** and click on **OK (5)**.
+
+   ![](media/cdn-nat-lab4-e41-g10.png)
+
+   >**Note:** To see the configurations, ensure that Provision throughput is **Checked**.
+
+1. In the Azure portal search bar, enter **Resource groups (1)** and select **Resource groups (2)** from the Services list.
+
+   ![](media/cdn-nat-lab4-e41-g11.png)
+
+1. From the **Resource groups** list, select the **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />** resource group.
+
+   ![](media/cdn-nat-lab4-e41-g12.png)
+
+1. In the **Resources** list, use the filter **(1)** if required, and then select the **contosotraders<inject key="DeploymentID" enableCopy="false" /> (2)** Azure Database Migration Service resource.
+
+   ![](media/cdn-nat-lab4-e41-g13.png)
 
 1. On the Azure Database Migration Service blade, select **+ New Migration Project** on the **Overview** pane.
 
-   ![](media/newproject.png)
+   ![](media/cdn-nat-lab4-e41-g14.png)
 
-1. On the **New migration project** pane, enter the following values and then select **Create and run activity**:
+1. On the **New migration project** pane, enter the following values and then select **Create and run activity (5)**:
 
-   - Project name: `contoso`
-   - Source server type: `MongoDB`
-   - Target server type: `CosmosDB (MongoDB API)`
-   - Migration activity type: `Offline data migration`
+   - **Project name**: `contoso` **(1)**
+   - **Source server type**: `MongoDB` **(2)**
+   - **Target server type**: `Cosmos DB (MongoDB API)` **(3)**
+   - **Choose type of activity**: `Offline data migration` **(4)**
 
-      ![The screenshot shows the New migration project pane with values entered.](media/ex2-newmigrationproject.png  "New migration project pane")
+      ![.](media/cdn-nat-lab4-e41-g15.png)
 
       >**Note**: The **Offline data migration** activity type is selected since you will be performing a one-time migration from MongoDB to Cosmos DB. Also, the data in the database won't be updated during the migration. In a production scenario, you will want to choose the migration project activity type that best fits your solution requirements.
 
 1. On the **MongoDB to Azure Database for CosmosDB Offline Migration Wizard** pane, enter the following values for the **Select source** tab:
 
-   - Mode: **Standard mode**
-   - Source server name: Enter the Private IP Address of the Build Agent VM used in this lab.
-   - Server port: `27017`
-   - Require SSL: Unchecked
+   - Mode: **Standard mode (1)**
+   - Source server name: Enter the Private IP Address of the Build Agent VM used in this lab. **(2)**
+   - Server port: `27017` **(3)**
+   - Require SSL: Unchecked **(4)**
+   - Choose **Next: Select target >> (5)**
 
       > **Note:** Leave the **User Name** and **Password** blank as the MongoDB instance on the Build Agent VM for this lab does not have authentication turned on. The Azure Database Migration Service is connected to the same VNet as the Build Agent VM, so it's able to communicate within the VNet directly to the VM without exposing the MongoDB service to the Internet. In production scenarios, you should always have authentication enabled on MongoDB.
 
-      ![Select source tab with values selected for the MongoDB server.](media/CNV2-E2-T2-S5.png "MongoDB to Azure Database for CosmosDB - Select source")
-    
-   > **Note:** If you face an issue while connecting to the source DB with an error connection is refused. Please run the following commands in **build agent VM connected in CloudShell**. You can use the **Command to Connect to Build Agent VM**, which is given on the lab environment details page.
+      ![.](media/cdn-nat-lab4-e41-g16.png)
 
-   ```bash
-   sudo apt install mongodb-server
-   cd /etc
-   sudo sed -i 's/bind_ip = 127.0.0.1/bind_ip = 0.0.0.0/g' /etc/mongodb.conf
-   sudo sed -i 's/#port = 27017/port = 27017/g' /etc/mongodb.conf
-   sudo service mongodb stop
-   sudo service mongodb start
-   ```
-    
-1. Select **Next: Select target >>**.
+      > **Note:** If you face an issue while connecting to the source DB, with an error connection refused. Please run the following commands in **build agent VM connected in CloudShell**. You can use the **Command to Connect to Build Agent VM**, which is given on the lab environment details page.
+
+      ```bash
+      sudo apt install mongodb-server
+      cd /etc
+      sudo sed -i 's/bind_ip = 127.0.0.1/bind_ip = 0.0.0.0/g' /etc/mongodb.conf
+      sudo sed -i 's/#port = 27017/port = 27017/g' /etc/mongodb.conf
+      sudo service mongodb stop
+      sudo service mongodb start
+      ```
 
 1. On the **Select target** pane, select the following values:
 
-   - Mode: **Select Cosmos DB target**
+   - Mode: **Select Cosmos DB target (1)**
+   - Subscription: Select the Azure subscription you're using for this lab. **(2)**
+   - Select Cosmos DB name: Select the **contosotraders-<inject key="DeploymentID" enableCopy="false" /> (3)** Cosmos DB instance.
+   - Select **Next: Database setting >> (4)**.
 
-   - Subscription: Select the Azure subscription you're using for this lab.
+      ![.](media/cdn-nat-lab4-e41-g17.png)
 
-   - Select Cosmos DB name: Select the **contosotraders-<inject key="DeploymentID" enableCopy="false" />** Cosmos DB instance.
+      >**Note:** Notice, the **Connection String** will automatically populate with the Key for your Azure Cosmos DB instance.
 
-      ![The Select target tab with values selected.](media/targetmongo.png "MongoDB to Azure Database for CosmosDB - Select target")
+1. On the **Database setting** tab, select the `contentdb` as **Source Database (1)**, so this database from MongoDB will be migrated to Azure Cosmos DB. Select **Next: Collection setting >> (2)**.
 
-      >Notice, that the **Connection String** will automatically populate with the Key for your Azure Cosmos DB instance.
+   ![.](media/cdn-nat-lab4-e41-g18.png)
 
-1. Select **Next: Database setting >>**.
+1. On the **Collection setting** tab, expand the **contentdb** database, and ensure both the **products** and **items** collections are selected for migration **(1)**. Also, update the **Throughput (RU/s)** to `400` **(2)** for both collections and select **Next : Migration summary >> (3)**.
 
-1. On the **Database setting** tab, select the `contentdb` **Source Database**, so this database from MongoDB will be migrated to Azure Cosmos DB.
+   ![The screenshot shows the Collection setting tab with both items and items collections selected with Throughput RU/s set to 400 for both collections.](media/cloudnative-v1-13.png "Throughput RU")
 
-   ![The screenshot shows the Database setting tab with the contentdb source database selected.](media/contentdb.png "Database setting tab")
+1. On the **Migration summary** tab, enter `MigrateData` **(1)** in the **Activity name** field, and then select **Start migration (2)** to initiate the migration of the MongoDB data to Azure Cosmos DB.
 
-1. Select **Next: Collection setting >>**.
+   ![.](media/cdn-nat-lab4-e41-g20.png)
 
-1. On the **Collection setting** tab, expand the **contentdb** database, and ensure both the **products** and **items** collections are selected for migration. Also, update the **Throughput (RU/s)** to `400` for both collections.
+1. Wait for a few seconds after the migration starts, and then select **Refresh**.
 
-   ![The screenshot shows the Collection setting tab with both items and items collections selected with Throughput RU/s set to 400 for both collections.](media/db3.png "Throughput RU")
+   ![.](media/cdn-nat-lab4-e41-g21.png)
 
-1. Select **Next: Migration summary >>**.
+1. The migration activity's status will be displayed. The migration will be finished in a matter of seconds.
 
-1. On the **Migration summary** tab, enter `MigrateData` in the **Activity name** field, and then select **Start migration** to initiate the migration of the MongoDB data to Azure Cosmos DB.
+   ![.](media/cdn-nat-lab4-e41-g22.png)
 
-   ![The screenshot shows the Migration summary is shown with MigrateData entered in the Activity name field.](media/cloudnative3.png "Migration summary")
+1. Select **Data Explorer (1)** from the left menu. You will see the `items` and `products` collections listed within the `contentdb` database **(2)** and you will be able to explore the documents **(3)**.
 
-1. The migration activity's status will be displayed. The migration will be finished in a matter of seconds. Select **Refresh** to reload the status and ensure it is **complete**. 
-
-   ![The screenshot shows the MigrateData activity showing the status has completed.](media/completed.png "MigrateData activity completed")
-
-1. To verify the migrated data, navigate to the **contosotraders-<inject key="DeploymentID" enableCopy="false" />** Azure CosmosDB for MongoDB account in the **ContosoTraders-<inject key="DeploymentID" enableCopy="false" />** resource group. Select **Data Explorer** from the left menu.
-
-   ![The screenshot shows the Cosmos DB is open in the Azure Portal with Data Explorer open showing the data has been migrated.](media/new-04.png "Cosmos DB is open")
+   ![The screenshot shows the Cosmos DB is open in the Azure Portal with Data Explorer open showing the data has been migrated.](media/cnp-p3t2p2.png "Cosmos DB is open")
 
 1. You will see the `items` and `products` collections listed within the `contentdb` database and you will be able to explore the documents.
 
-   ![The screenshot shows the Cosmos DB is open in the Azure Portal with Data Explorer open showing the data has been migrated.](media/new-05.png "Cosmos DB is open")
+1. Within the **contosotraders-<inject key="DeploymentID" enableCopy="false" />** Azure Cosmos DB for MongoDB account (RU), Select **Quick start** **(1)** blade from the left menu and **Copy** the **PRIMARY CONNECTION STRING** **(2)** and paste it into the text file for later use in the next exercise.
 
-1. Within the **contosotraders-<inject key="DeploymentID" enableCopy="false" />** Azure CosmosDB for MongoDB account. Select **Quick start** **(1)** from the left menu and **Copy** the **PRIMARY CONNECTION STRING** **(2)** and paste it into the text file for later use in the next exercise.
-
-   ![](media/new-06.png)
-
-1. Click the **Next** button located in the bottom right corner of this lab guide to continue with the next exercise.
+   ![](media/E2T2S16.png)
 
 #### Validation
 
