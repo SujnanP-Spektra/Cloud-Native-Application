@@ -83,7 +83,7 @@ To get a better understanding of your lab resources and credentials, navigate to
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
- ![Use the Split Window Feature](media/14052025(2).png)
+ ![Use the Split Window Feature](media/new3.png)
 
 ## Managing Your Virtual Machine
  
@@ -95,7 +95,7 @@ Feel free to **Start, Stop, or Restart** your virtual machine as needed from the
 
 To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
 
-![Manage Your Virtual Machine](media/14052025(3).png)
+![Manage Your Virtual Machine](media/new1.png)
 
 ## Lab Validation
 
@@ -122,10 +122,6 @@ If you need any assistance, please contact us at cloudlabs-support@spektrasystem
    * Password: <inject key="AzureAdUserPassword"></inject>
    
      ![](media/cnp-p4t1p2(3).png "Enter Password")
-     
-     > If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
-
-     ![](media/gs-6.png "Enter Password")
   
 1. If you see the pop-up **Stay Signed in?**, click No
 

@@ -58,17 +58,23 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 To access your lab credentials, navigate to the **Environment Details** tab.
 
-   ![](./media/m36-gt-lab-gs-g3.png)
+   ![](./media/new02.png)
  
 ## **Utilizing the Split Window Feature**
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
-   ![](./media/CL3.png)
+   ![](./media/new3.png)
 
 If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
 
    ![](./media/fr-gs-g1.png)
+
+## Lab Guide Zoom In/Zoom Out
+
+To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+
+![Manage Your Virtual Machine](./media/new1.png)
  
 ## **Managing Your Virtual Machine**
  
@@ -114,6 +120,6 @@ Learner Support Contacts:
    
 Now, click on Next from the lower right corner to move to the next page.
 
-   ![](./media/GS4.png "Enter Password")
+   ![](./media/nextpage1.png "Enter Password")
 
 ### Happy Learning!!
