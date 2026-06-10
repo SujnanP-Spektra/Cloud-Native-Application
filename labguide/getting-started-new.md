@@ -69,6 +69,12 @@ For convenience, you can open the lab guide in a separate window by selecting th
 If a **PowerShell** window opens and starts installing packages, **do not close it**. Click the **Minimize** button and continue with the lab.
 
    ![](./media/fr-gs-g1.png)
+
+## Lab Guide Zoom In/Zoom Out
+
+To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+
+![Manage Your Virtual Machine](./media/new1.png)
  
 ## **Managing Your Virtual Machine**
  
