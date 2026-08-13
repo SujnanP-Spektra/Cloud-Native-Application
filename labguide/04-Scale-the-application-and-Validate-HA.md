@@ -240,14 +240,6 @@ In this task, you will set up Autoscale on Azure Cosmos DB.
 
     ![The screenshot displays Cosmos DB Scale and Settings tab with Autoscale selected](media/cnapp-ex4t6p2.png "CosmosDB collection scale and settings")
 
-
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - If you receive a success message, you can proceed to the next task.
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide. 
-> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
-
-   <validation step="772e22fb-588f-41b1-b761-428e48c79279" />
-
 ## Task 7: Test CosmosDB Autoscale
 
 In this task, you will run a performance test script that will test the Autoscale feature of Azure Cosmos DB so you can see that it will now scale greater than 400 RU/s.
