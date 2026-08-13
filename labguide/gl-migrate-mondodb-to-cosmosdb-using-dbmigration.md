@@ -117,7 +117,17 @@ In this task, you will create a Migration project within Azure Database Migratio
 
    ![](media/cdn-nat-lab4-e41-g10.png)
 
-   >**Note:** To see the configurations, ensure that Provision throughput is **Checked**.
+      > **Note:** If you do not see the **Provision throughput** option while creating the database, follow the steps below to enable it and configure the required throughput.
+
+      1. In the **contentdb** database, click **More options (1)** and select **New Collection (2)**.
+
+         ![](media/CN2.png)
+
+      2. In the **New Collection** window, select **Use existing (1)**, select **contentdb (2)** as the database, enter **Collection1 (3)** as the **Collection ID**, and enter **key1 (4)** as the **Share key**.
+
+      3. Under **Collection throughput**, select **Manual (5)**, enter **400 (6)** in the **Collection Required RU/s** field, and click **OK (7)**.
+
+         ![](media/CN3.png)
 
 1. In the Azure portal search bar, enter **Resource groups (1)** and select **Resource groups (2)** from the Services list.
 
