@@ -240,6 +240,10 @@ In this task, you will set up Autoscale on Azure Cosmos DB.
 
     ![The screenshot displays Cosmos DB Scale and Settings tab with Autoscale selected](media/cnapp-ex4t6p2.png "CosmosDB collection scale and settings")
 
+     > **Note:** If you do not see the **Scale** option directly, expand the required collection by selecting the **dropdown arrow** next to the collection name. The available collections are **Collection1**, **items**, **products**, and **sessions**. Then select **Scale & Settings** for the required collection.
+
+     ![](media/CN4.png)
+
 ## Task 7: Test CosmosDB Autoscale
 
 In this task, you will run a performance test script that will test the Autoscale feature of Azure Cosmos DB so you can see that it will now scale greater than 400 RU/s.
